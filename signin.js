@@ -1,22 +1,23 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import {auth} from "./firebaselogin"
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "./firebase"
+import { auth } from "./firebaselogin"
 import React, { useState } from "react"
 
 
-function Sign_page({enterUser}){
-    const [email,setEmail] = useState("")
-    const [password,setPassword] = useState("")
-    function handleSubmit(event){
+function SignPage({ enterUser }) {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    function handleSubmit(event) {
         event.preventDefault()
-        if(!email||!password)
-        {
+        if (!email || !password) {
             return
         }
-        enterUser(email,password)
+        enterUser(email, password)
         setEmail("")
         setPassword("")
     }
-    return(
+    return (
         <form onSubmit={handleSubmit}>
             <label for="email">Enter your Work Email</label>
             <input type="email" value={email} placeholder="Email" onChange={
@@ -30,25 +31,45 @@ function Sign_page({enterUser}){
         </form>
     )
 }
-function Signin(){
-    function enterUser(email,password)
-    {
+async function getData() {
+    const querySnapshot = await getDocs(collection(db, "Ticket"));
+    //   if(user.email.indexOf("fin")!==-1)
+    //   {
+    //     querySnapshot.forEach((doc) => {
+    //         if(doc.domain==="finance"){
+    //             console.log(doc.firstName)
+    //         }
+
+    //       });
+    //   }
+    querySnapshot.forEach((doc) => {
+        // console.log(doc.data().domain)
+        if(doc.data().domain==="Finance")
+        {
+            console.log(`${doc.data().complaint}=>${doc.data().priority}=>${doc.data().name}`)
+
+        }
+    });
+
+}
+function Signin() {
+    function enterUser(email, password) {
         signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          // Signed in 
-          const user = userCredential.user;
-          console.log(user.email)
-          
-          // ...
-        })
-        .catch((error) => {
-          alert("UH Oh!!!!")
-          console.log(error)
-        });
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                //   console.log(user.email)
+                getData()
+                // ...
+            })
+            .catch((error) => {
+                alert("UH Oh!!!!")
+                console.log(error)
+            });
     }
-    return(
+    return (
         <div>
-            <Sign_page enterUser={enterUser}/>
+            <SignPage enterUser={enterUser} />
         </div>
     )
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import App from './App';
+import App from './App';
 import Login from "./login"
 import Signin from "./signin"
 
 
 ReactDOM.render(
-    <Signin />,
+    <App />,
   document.getElementById('root')
 );
 
