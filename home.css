@@ -1,0 +1,30 @@
+body{
+    background-color: greenyellow;
+    height: 80vh;
+    margin: 0px !important;
+
+}
+/* .col-8{
+    border: red dashed;
+    
+} */
+/* .container{
+    border: dashed red;
+} */
+img{
+    width: 70vw;
+    margin-top: 10%;
+    border-radius: 50px;
+    margin-left: -10%;
+}
+.page_buttons{
+    margin: auto;
+}
+.sign_in_emp{
+    margin-left: 40%;
+    margin-top: 5%;
+}
+.sign_up_emp{
+    margin-left: 25%;
+    margin-top: 5%;
+}
