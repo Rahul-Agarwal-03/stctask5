@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {db} from "./firebase"
 import { collection, addDoc } from "firebase/firestore"; 
+import {Link} from "react-router-dom"
 
 
 function Form({addComplaint})
@@ -23,12 +24,12 @@ function Form({addComplaint})
    }
      return(
        <form onSubmit={handleSubmit}>
-         <label for="name">Enter Name</label>
-         <input type="text" value={name} placeholder="Name" onChange={
+         <label className="me-3" for="name">Enter Name:</label>
+         <input className="me-5" type="text" value={name} placeholder="Name" onChange={
            e=>setName(e.target.value)} id="name" required>
          </input>
-         <label for="priority">Select Priority</label>
-         <select value={priority} id="priority" onChange={
+         <label className="me-3" for="priority">Select Priority:</label>
+         <select className="me-5" value={priority} id="priority" onChange={
            e=>setPriority(e.target.value)
          } required>
            <option value="">Please Choose Priority</option>
@@ -36,12 +37,13 @@ function Form({addComplaint})
            <option value="Medium">Medium</option>
            <option value="High">High</option>
          </select>
-         <label for="complaint">Enter Complaint</label>
-         <textarea id="complaint" value={complaint} placeholder="Your Complaint?" onChange={
+         <br />
+         <label className="mt-3 me-3" for="complaint">Enter Complaint:</label>
+         <textarea className="mt-3 me-5" id="complaint" value={complaint} placeholder="Your Complaint?" onChange={
            e=>setComplaint(e.target.value)
          }>Enter Complaint</textarea>
-         <label for="domain">Your Domain</label>
-         <select value={domain} id="domain" onChange={
+         <label className="me-3 mt-3" for="domain">Your Domain:</label>
+         <select className="me-5" value={domain} id="domain" onChange={
            e=>setDomain(e.target.value)} required>
            <option value="">Please Choose Domain</option>
            <option value="finance">Finance</option>
@@ -50,7 +52,10 @@ function Form({addComplaint})
            <option value="operations">Operations</option>
            <option value="app_Dev">App Dev</option>
          </select>
-         <button>Add Complaint</button>
+         <button className="sign_up_emp btn btn-warning">Add Complaint</button>
+         <Link to="/">
+            <button className="sign_up_emp btn btn-warning">Home</button>
+            </Link>
        </form>
      )
 }
@@ -86,6 +91,7 @@ function RaiseTicket() {
         status: true
         });
         console.log("Document written with ID: ", docRef.id);
+        alert("Ticket Raised!!!")
       } catch (e) {
         console.error("Error adding document: ", e);
       }

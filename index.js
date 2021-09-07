@@ -24,6 +24,7 @@ ReactDOM.render(
       <Route path="/SignUpAdmin" component={LoginAdmin} />
       <Route path="/SignInEmployee" component={SigninEmp} />
       <Route path="/SignInAdmin" component={Signin} />
+      <Route path="/RaiseTicket" component={RaiseTicket} />
     </Switch>
     </div>
   </Router>

@@ -20,7 +20,7 @@ function SignPage({ enterUser }) {
     return (
         <form onSubmit={handleSubmit}>
             <label className="me-3" for="email">Enter your Work Email:</label>
-            <input className="me-5" type="email" value={email} placeholder="Email" onChange={
+            <input className="me-5" type="email" value={email} placeholder="example@domain.co.in" onChange={
                 e => setEmail(e.target.value)} id="email" required>
             </input>
             <label className="me-3" for="password">Enter your Password:</label>
